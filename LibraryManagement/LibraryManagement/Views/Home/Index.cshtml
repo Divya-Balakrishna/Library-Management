@@ -1,8 +1,10 @@
-﻿<div class="jumbotron">
+﻿@model IEnumerable<LibraryManagement.Models.Book>
+<div class="jumbotron">
     <h1>Library Management</h1>
     <p class="lead">Welcome to Library Management Application.</p>
     <p>
 		@Html.ActionLink("View All Books In Library", "", "Book", new { area = "" }, new { @class = "btn btn-primary btn-lg" })
+		@*@Html.ActionLink("View All Books In Library", "Books", "Book", new { area = "" }, new { @class = "btn btn-primary btn-lg" })*@
 	@*<a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a>*@</p>
 </div>
 
@@ -14,4 +16,54 @@
 	</div>
 
 </div>
+
+
+
+
+<table class="table">
+	<tr>
+		<th>
+			@Html.DisplayNameFor(model => model.Name)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.Category)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.Author)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.Available)
+		</th>
+
+
+	</tr>
+
+	@foreach (var item in Model)
+	{
+		<tr>
+			<td>
+				@Html.DisplayFor(modelItem => item.Name)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.Category)
+			</td>
+
+			<th>
+				@Html.DisplayNameFor(model => model.Author)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Available)
+			</th>
+
+			<td>
+				@Html.ActionLink("Edit", "UpdateBook", new { id = item.Id }) |
+				@Html.ActionLink("Details", "GetBook", new { id = item.Id }) |
+				@Html.ActionLink("Delete", "DeleteBook", new { id = item.Id })
+			</td>
+		</tr>
+	}
+</table>
+
+
+
 
